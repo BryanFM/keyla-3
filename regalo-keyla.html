@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Para Keyla 💕</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #ff6b8a;
+      --pink-soft: #ffb3c6;
+      --pink-dim: #cc4466;
+      --bg: #0a0010;
+      --card-bg: rgba(40, 0, 52, 0.85);
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      background: var(--bg);
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ════════════════════════════════════
+       INTRO
+    ════════════════════════════════════ */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 45%, #2a0032 0%, #0a0010 72%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      cursor: pointer;
+      transition: opacity 1.4s ease;
+      padding: 20px;
+    }
+
+    #intro.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intro-gift {
+      font-size: clamp(64px, 20vw, 100px);
+      animation: giftPulse 1.8s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px rgba(255, 80, 120, .65));
+      margin-bottom: clamp(18px, 5vw, 30px);
+      line-height: 1;
+    }
+
+    .intro-text {
+      color: var(--pink-soft);
+      font-size: clamp(16px, 4.5vw, 22px);
+      font-style: italic;
+      text-align: center;
+      line-height: 1.65;
+      animation: fadeInUp 1s ease .4s both;
+      max-width: 320px;
+    }
+
+    .intro-tap {
+      margin-top: clamp(28px, 8vw, 50px);
+      color: var(--pink-dim);
+      font-size: clamp(11px, 3vw, 13px);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    /* ════════════════════════════════════
+       MAIN  (scrollable para pantallas cortas)
+    ════════════════════════════════════ */
+    #main {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      /* dynamic viewport en móvil */
+      background: radial-gradient(ellipse at 50% 25%, #1e0028 0%, #0a0010 65%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: clamp(16px, 4vw, 40px) 16px clamp(32px, 6vw, 56px);
+      opacity: 0;
+      transition: opacity 1.4s ease .3s;
+    }
+
+    #main.visible {
+      opacity: 1;
+    }
+
+    /* ════════════════════════════════════
+       CARD
+    ════════════════════════════════════ */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 90, 130, .22);
+      border-radius: clamp(16px, 4vw, 24px);
+      padding: clamp(28px, 6vw, 44px) clamp(18px, 5vw, 32px) clamp(24px, 5vw, 38px);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow:
+        0 0 0 1px rgba(255, 80, 120, .07),
+        0 0 40px rgba(180, 0, 70, .22),
+        0 0 80px rgba(110, 0, 48, .10),
+        0 24px 60px rgba(0, 0, 0, .55);
+      animation: cardAppear 1.2s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .card-eyebrow {
+      color: var(--pink-dim);
+      font-size: clamp(10px, 2.5vw, 12px);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: 6px;
+    }
+
+    .card-name {
+      color: #ffe0ea;
+      font-size: clamp(36px, 10vw, 50px);
+      font-style: italic;
+      font-weight: normal;
+      text-shadow: 0 0 28px rgba(255, 100, 140, .5);
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+
+    .card-subtitle {
+      color: var(--pink-dim);
+      font-size: clamp(11px, 3vw, 13px);
+      letter-spacing: 2px;
+      opacity: .6;
+      margin-bottom: clamp(14px, 4vw, 22px);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: clamp(12px, 3.5vw, 18px) 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 90, 130, .4), transparent);
+    }
+
+    .divider span {
+      font-size: 15px;
+    }
+
+    /* ════════════════════════════════════
+       PET STICKERS — tres mascotas
+    ════════════════════════════════════ */
+    .pets-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: clamp(6px, 3vw, 18px);
+      margin: clamp(4px, 2vw, 10px) auto clamp(12px, 4vw, 20px);
+      flex-wrap: nowrap;
+    }
+
+    .pet-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Las dos de los lados */
+    .pet-image {
+      width: clamp(72px, 18vw, 100px);
+      height: clamp(72px, 18vw, 100px);
+      object-fit: contain;
+      filter:
+        drop-shadow(0 0 10px rgba(255, 80, 120, .45)) drop-shadow(0 4px 8px rgba(0, 0, 0, .4));
+      animation: petFloat 3s ease-in-out infinite;
+      display: block;
+    }
+
+    /* La del centro, un poco más grande */
+    .pet-wrap.center .pet-image {
+      width: clamp(88px, 22vw, 120px);
+      height: clamp(88px, 22vw, 120px);
+      filter:
+        drop-shadow(0 0 14px rgba(255, 80, 120, .6)) drop-shadow(0 4px 10px rgba(0, 0, 0, .45));
+    }
+
+    /* Desfases de animación para ritmo variado */
+    .pet-wrap:nth-child(1) .pet-image {
+      animation-delay: 0s;
+    }
+
+    .pet-wrap:nth-child(2) .pet-image {
+      animation-delay: -1s;
+    }
+
+    .pet-wrap:nth-child(3) .pet-image {
+      animation-delay: -2s;
+    }
+
+    .pet-hearts {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      font-size: clamp(16px, 4vw, 22px);
+      animation: petHeart 2.2s ease-in-out infinite;
+    }
+
+    /* ── Poema ── */
+    .card-message {
+      position: relative;
+      color: #e8c0cc;
+      font-size: clamp(13px, 3.6vw, 15.5px);
+      line-height: 2.15;
+      margin: 4px 0 20px;
+      font-style: italic;
+      text-align: center;
+      letter-spacing: 0.25px;
+      padding: 14px clamp(8px, 4vw, 24px) 10px;
+    }
+
+    /* Comilla decorativa de apertura */
+    .card-message::before {
+      content: '\201C';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(56px, 14vw, 72px);
+      font-style: normal;
+      line-height: 1;
+      color: rgba(255, 107, 138, 0.15);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Verso normal */
+    .card-message .verso {
+      display: block;
+    }
+
+    /* Espacio entre estrofas */
+    .card-message .estrofa {
+      display: block;
+      margin-top: 0.6em;
+    }
+
+    /* Verso de cierre — más luminoso */
+    .card-message .cierre {
+      display: block;
+      color: var(--pink-soft);
+      font-style: normal;
+      letter-spacing: 0.5px;
+      margin-top: 0.5em;
+    }
+
+    .card-hearts {
+      font-size: clamp(18px, 5vw, 24px);
+      letter-spacing: 6px;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    .signature {
+      margin-top: clamp(12px, 3vw, 18px);
+      color: rgba(200, 100, 130, .65);
+      font-size: clamp(12px, 3vw, 13px);
+      font-style: italic;
+    }
+
+    /* ════════════════════════════════════
+       ELEMENTOS FLOTANTES
+    ════════════════════════════════════ */
+    .petal {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      animation: petalFall linear infinite;
+      top: -30px;
+      will-change: transform;
+    }
+
+    .heart-float {
+      position: fixed;
+      pointer-events: none;
+      opacity: 0;
+      animation: heartRise ease-in infinite;
+      bottom: -50px;
+      will-change: transform;
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      opacity: 0;
+      animation: twinkle ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+
+    /* ════════════════════════════════════
+       KEYFRAMES
+    ════════════════════════════════════ */
+    @keyframes giftPulse {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(-3deg);
+      }
+
+      50% {
+        transform: scale(1.1) rotate(3deg);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: .3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: scale(.84) translateY(36px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.13);
+      }
+    }
+
+    @keyframes petFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-11px) rotate(4deg);
+      }
+    }
+
+    @keyframes petHeart {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(-10deg);
+      }
+
+      50% {
+        transform: scale(1.35) rotate(10deg);
+      }
+    }
+
+    @keyframes petalFall {
+      0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) rotate(0deg);
+      }
+
+      8% {
+        opacity: .75;
+      }
+
+      90% {
+        opacity: .5;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateX(60px) translateY(106vh) rotate(400deg);
+      }
+    }
+
+    @keyframes heartRise {
+      0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) scale(.6);
+      }
+
+      15% {
+        opacity: .7;
+      }
+
+      80% {
+        opacity: .35;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateX(var(--dx)) translateY(-106vh) scale(1.1);
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .8;
+        transform: scale(2.2);
+      }
+    }
+
+    /* ════════════════════════════════════
+       MEDIA QUERIES EXTRA
+    ════════════════════════════════════ */
+    /* Pantallas muy pequeñas (< 360px ancho) */
+    @media (max-width: 359px) {
+      .card {
+        padding: 22px 14px 20px;
+      }
+
+      .pets-row {
+        gap: 10px;
+      }
+    }
+
+    /* Landscape en móvil — evitar que la tarjeta quede cortada */
+    @media (max-height: 520px) and (orientation: landscape) {
+      #main {
+        justify-content: flex-start;
+        padding-top: 16px;
+      }
+
+      .card-name {
+        font-size: 30px;
+      }
+
+      .pets-row {
+        margin: 4px auto 8px;
+      }
+
+      .pet-image {
+        width: 60px;
+        height: 60px;
+      }
+
+      .pet-wrap.center .pet-image {
+        width: 72px;
+        height: 72px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════ INTRO ══════════════ -->
+  <div id="intro" onclick="openGift()">
+    <div class="intro-gift">🎁</div>
+    <div class="intro-text">
+      Tienes un regalo especial<br>esperándote con mucho amor&hellip;
+    </div>
+    <div class="intro-tap">✨ &nbsp; toca para abrir &nbsp; ✨</div>
+  </div>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <div id="main">
+    <div class="card">
+
+      <div class="card-eyebrow">para</div>
+      <div class="card-name">♥ Keyla ♥</div>
+
+      <div class="divider">
+        <div class="divider-line"></div><span>🌹</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="pets-row">
+        <div class="pet-wrap">
+          <img class="pet-image" src="summer.png" alt="perrito">
+          <span class="pet-hearts">💕</span>
+        </div>
+        <div class="pet-wrap center">
+          <img class="pet-image" src="blanca.png" alt="perrito">
+          <span class="pet-hearts">💕</span>
+        </div>
+        <div class="pet-wrap">
+          <img class="pet-image" src="summer2.png" alt="perrito">
+          <span class="pet-hearts">💕</span>
+        </div>
+      </div>
+
+      <div class="card-message">
+        <span class="verso">Extrañándote,</span>
+        <span class="verso">como te extraño</span>
+        <span class="verso">cada vez que no te tengo cerca&hellip;</span>
+        <span class="estrofa">quise darte algo simple,</span>
+        <span class="verso">pero que demuestre</span>
+        <span class="cierre">que pienso en ti en cada momento.</span>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div><span>🌹</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="card-hearts" style="color:#fff">♥ &thinsp; ♥ &thinsp; ♥</div>
+      <div class="signature">Con todo mi amor 🌹</div>
+
+    </div>
+  </div>
+
+  <script>
+    /* Destellos de fondo (siempre activos) */
+    (function spawnSparkles() {
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 55; i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        const sz = (Math.random() * 2 + 2).toFixed(1);
+        s.style.cssText =
+          `left:${Math.random() * 100}vw;` +
+          `top:${Math.random() * 100}vh;` +
+          `width:${sz}px;height:${sz}px;` +
+          `animation-duration:${(Math.random() * 3 + 2).toFixed(1)}s;` +
+          `animation-delay:${(Math.random() * 5).toFixed(1)}s;`;
+        frag.appendChild(s);
+      }
+      document.body.appendChild(frag);
+    })();
+
+    /* Abrir regalo */
+    function openGift() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('main').classList.add('visible');
+      spawnPetals();
+      spawnHearts();
+    }
+
+    /* Pétalos de rosa */
+    function spawnPetals() {
+      const colors = ['#e8436a', '#c2294f', '#ff7096', '#a01840', '#d4204e'];
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 24; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const w = (Math.random() * 8 + 8).toFixed(1);
+        p.style.cssText =
+          `left:${(Math.random() * 108 - 4).toFixed(1)}vw;` +
+          `width:${w}px;height:${(w * 1.5).toFixed(1)}px;` +
+          `background:radial-gradient(ellipse,${colors[i % colors.length]} 0%,${colors[(i + 2) % colors.length]} 100%);` +
+          `animation-duration:${(Math.random() * 5 + 7).toFixed(1)}s;` +
+          `animation-delay:${(Math.random() * 14).toFixed(1)}s;`;
+        frag.appendChild(p);
+      }
+      document.body.appendChild(frag);
+    }
+
+    /* Corazones flotantes */
+    function spawnHearts() {
+      const emoji = ['❤️', '💕', '💗', '💖', '🌹', '💝', '✨'];
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 18; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart-float';
+        h.textContent = emoji[Math.floor(Math.random() * emoji.length)];
+        const dx = (Math.random() * 80 - 40).toFixed(0) + 'px';
+        h.style.cssText =
+          `left:${Math.random() * 100}vw;` +
+          `font-size:${(Math.random() * 14 + 14).toFixed(0)}px;` +
+          `animation-duration:${(Math.random() * 5 + 8).toFixed(1)}s;` +
+          `animation-delay:${(Math.random() * 16).toFixed(1)}s;` +
+          `--dx:${dx};`;
+        frag.appendChild(h);
+      }
+      document.body.appendChild(frag);
+    }
+  </script>
+</body>
+
+</html>
