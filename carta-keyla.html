@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carta para Keyla</title>
+  <link rel="icon" type="image/png" href="blanca.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1a1a2e;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(90, 60, 120, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(60, 90, 120, 0.15) 0%, transparent 50%);
+      padding: 40px 20px;
+    }
+
+    .carta-wrapper {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .carta {
+      background-color: #fdf8f0;
+      border-radius: 2px;
+      padding: 60px 64px;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.3),
+        0 20px 60px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      position: relative;
+      font-family: 'Lora', serif;
+      color: #2c2c2c;
+      line-height: 1.9;
+    }
+
+    /* Texture lines sutiles tipo papel rayado */
+    .carta::before {
+      content: '';
+      position: absolute;
+      inset: 60px 64px;
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 34px,
+        rgba(180, 160, 130, 0.18) 34px,
+        rgba(180, 160, 130, 0.18) 35px
+      );
+      pointer-events: none;
+    }
+
+    .fecha {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #8a7a6a;
+      font-style: italic;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1.6em;
+      text-align: justify;
+      position: relative;
+    }
+
+    p:first-of-type::first-letter {
+      font-size: 3.2rem;
+      font-family: 'Dancing Script', cursive;
+      float: left;
+      line-height: 0.75;
+      margin-right: 6px;
+      margin-top: 6px;
+      color: #6b4c6b;
+    }
+
+    .despedida {
+      margin-top: 2.4em;
+      margin-bottom: 0.4em;
+      font-style: italic;
+      color: #5a4a5a;
+    }
+
+    .firma {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: #6b4c6b;
+      margin-top: 4px;
+      position: relative;
+    }
+
+    .abeja {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+
+    .deco-top {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .deco-top::before,
+    .deco-top::after {
+      content: '';
+      display: inline-block;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c4a882);
+      vertical-align: middle;
+      margin: 0 12px;
+    }
+
+    .deco-top::after {
+      background: linear-gradient(to left, transparent, #c4a882);
+    }
+
+    .deco-top span {
+      font-size: 1.1rem;
+      color: #c4a882;
+      vertical-align: middle;
+    }
+
+    .deco-bottom {
+      text-align: center;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .deco-bottom::before {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c4a882, transparent);
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .carta {
+        padding: 40px 28px;
+      }
+      .carta::before {
+        inset: 40px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="carta-wrapper">
+    <div class="carta">
+      <div class="fecha">05 Marzo del 2026</div>
+
+      <div class="deco-top"><span>&#10022;</span></div>
+
+      <p>
+        A esta hora, siendo de noche, lo usual sería estar emocionado y a la espera de que llegues.
+        Si tuviera cola como blanca la movería también, mucho más que ella incluso. Sin embargo no
+        tengo cola y tampoco la certeza de que vendrás. Dije que lo aceptaría, pero el extrañarte
+        pesa mucho y la culpa del error lo hace insufrible.
+      </p>
+
+      <p>
+        Te quiero, y te quiero de vuelta y te quiero abrazar y decirte que el cambio es constante,
+        más no mi amor por ti, y tampoco mi deseo de ser mejor y aprender de mis errores para que
+        la relación siga. Dolió mucho que digas que no valía la pena, porque yo haría lo que fuese
+        por seguir contigo. Porque desde un comienzo quise arriesgarme, quise sentir y explorar lo
+        que significaba quererte y estar contigo. No me arrepiento y quiero seguir haciéndolo.
+        Porque te veo con ojos con los que no veo a nadie más, porque soy yo contigo y porque
+        sencillamente me gusta lo que siento por ti.
+      </p>
+
+      <p>
+        Cuando estabas ebria el sábado me llamaste "amor", no recuerdo ni qué me pediste que te
+        alcanzara, no me importaba, solo escuché eso y fui muy feliz, te vi con ternura y te
+        recosté para que descanses. No quiero perder ese paso a paso que nos ha llevado hasta este
+        momento incluso. Tuve mucho miedo de que no me aceptes desde un comienzo, y simplemente
+        por eso no me atrevería a fallarte, más soy humano y me equivoco. Pero en lo que no me
+        equivoco es en elegirte y en querer seguir contigo. Quisiera que esto sirva para mejor y
+        no para alejarnos, por favor reconsidéralo, no hay duda en que no quiero a nadie que no
+        seas tú.
+      </p>
+
+      <p>
+        Si he de extrañarte y perderte, que no sea ahora.<br>
+        Si he de extrañarte y perderte, que sepas que trajiste ternura y alegría a este lugar tan
+        desolado, triste, solitario y que blanca seguramente está cansada de sostener. Me devolviste
+        el placer de enamorarme, de querer escribir, de querer darlo todo por alguien y arriesgarme a amar y ser
+        vulnerable sin miedo a que lo usen en mi contra. Sé que lo que te puedo ofrecer no
+        es mucho pero es todo lo que tengo y soy.
+      </p>
+
+      <div class="deco-bottom"></div>
+
+      <p class="despedida">Con amor,</p>
+      <div class="firma">Bryan <span class="abeja">🐝</span></div>
+    </div>
+  </div>
+</body>
+</html>
